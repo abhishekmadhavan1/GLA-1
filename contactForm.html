@@ -6,37 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML CSS Layout</title>
     <style>
-        div {
-            border: 2px solid red;
-            padding: 10px;
-            margin-bottom: 5px;
-            /* width: 50px;
-            height: 50px; */
+        a {
+            margin-right: 50px;
         }
 
-        .container {
-            display: grid;
-            grid-template-columns: [first]50px [second]50px [third]50px [four];
-            grid-template-rows: 100px 100px;
-        }
-        .box1{
-            background-color: red;
-            grid-column: first/four;
-            grid-row: 1/3;
+        [class*="div"] {
+            margin-right: 50px;
+
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="box1">1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-        <div>5</div>
-    </div>
+    <div class="div-1"></div>
+    <p class="div-2"></p>
+    <a class="div-3"></a>
+    <img src="" alt="">
+    <script>
+        let dataSet = []
+        console.log("🚀 ~ dataSet:", dataSet)
+        const getData = async () => {
+            let response = await fetch("https://jsonplaceholder.typicode.com/users");
+            dataSet = await response.json();
+            console.log("🚀 ~ getData ~ data:", dataSet);
 
+            dataSet.forEach((item, idx) => {
+                const h1 = document.createElement('h1')
+                h1.textContent = `${idx + 1} - ${item.name}`
+                document.body.appendChild(h1)
+            })
+        };
+        getData();
 
+    </script>
 </body>
 
 </html>
