@@ -1,5 +1,4 @@
 import { useContext, useEffect, useMemo, useState } from "react";
-import { TitleContext } from "./home";
 
 const Counter = (props) => {
   const { buttonLabel = "Test Button" } = props;
@@ -8,9 +7,7 @@ const Counter = (props) => {
 
   const updateCount = () => {
     setCount(count + 1);
-    console.log("🚀 ~ updateCount ~ count inside:", count);
   };
-  console.log("🚀 ~ updateCount ~ count outside:", count);
 
   return (
     <>

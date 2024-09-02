@@ -1,0 +1,13 @@
+{
+  "remote.portsAttributes": {
+    "443": {
+      "protocol": "https"
+    },
+    "8443": {
+      "protocol": "https"
+    }
+  },
+  "rest-client.environmentVariables": {
+    "$shared": { "localhost5000": "http://localhost:5000" }
+  }
+}

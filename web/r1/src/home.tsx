@@ -1,43 +1,41 @@
-import { createContext, useState } from "react";
-import Counter from "./counter";
-import LoginForm from "./login";
-import Table from "./table";
-
-export const TitleContext = createContext('');
+import { useEffect, useState } from "react";
 
 export const Home = () => {
-  const [title, setTitle] = useState("GLA University");
+  const [title, setTitle] = useState('');
+
+  const getData = async () => {
+    const response = await fetch("http://127.0.0.1:5000/home");
+    const data = await response.json();
+    setTitle(data?.payload?.title)
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <>
-      <TitleContext.Provider value={title}>
-        <h1>Home Page</h1>
-        <nav
-          style={{
-            display: "flex",
-            padding: "10px",
-            backgroundColor: "#f0f0f0",
-          }}
-        >
-          <a href="/home" style={{ marginRight: "10px" }}>
-            <button>Home</button>
-          </a>
-          <a href="/table" style={{ marginRight: "10px" }}>
-            <button>Table</button>
-          </a>
-          <a href="/login" style={{ marginRight: "10px" }}>
-            <button>Login Form</button>
-          </a>
-          <a href="/counter" style={{ marginRight: "10px" }}>
-            <button>Counter</button>
-          </a>
-        </nav>
-        <h1>Counter</h1>
-        <Counter />
-        <h1>Table</h1>
-        <Table title="Title from Home Page"/>
-        <h1>Login Form</h1>
-        <LoginForm />
-      </TitleContext.Provider>
+      <h1>{title}</h1>
+      <nav
+        style={{
+          display: "flex",
+          padding: "10px",
+          backgroundColor: "#f0f0f0",
+        }}
+      >
+        <a href="/home" style={{ marginRight: "10px" }}>
+          <button>Home</button>
+        </a>
+        <a href="/table" style={{ marginRight: "10px" }}>
+          <button>Table</button>
+        </a>
+        <a href="/login" style={{ marginRight: "10px" }}>
+          <button>Login Form</button>
+        </a>
+        <a href="/counter" style={{ marginRight: "10px" }}>
+          <button>Counter</button>
+        </a>
+      </nav>
     </>
   );
 };
